@@ -1,0 +1,31 @@
+{
+  "name": "@monaco-protocol/market-seeder-core",
+  "version": "0.0.1",
+  "description": "Monaco Protocol Market Seeder Core",
+  "author": "Monaco Protocol",
+  "license": "MIT",
+  "module": "commonjs",
+  "target": "es5",
+  "scripts": {
+    "test": "jest",
+    "working": "ts-node src/working.ts",
+    "format": "prettier --config .prettierrc 'src/**/*.(ts|js)' --write",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.6",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "jest": "^29.3.1",
+    "lint-staged": "^13.1.0",
+    "prettier": "2.8.3",
+    "ts-jest": "^29.0.5"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --cache --fix",
+    "*.{js,ts,tsx,css,md}": "prettier --write"
+  }
+}
