@@ -1,17 +1,17 @@
 {
-  "name": "@monaco-protocol/market-seeder-core",
+  "name": "@monaco-protocol/seed-calculator",
   "version": "0.0.1-dev1",
-  "description": "Monaco Protocol Market Seeder Core",
+  "description": "Monaco Protocol Seed Calculator",
   "author": "Monaco Protocol",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MonacoProtocol/market-seeder-core"
+    "url": "git+https://github.com/MonacoProtocol/seed-calculator"
   },
   "bugs": {
-    "url": "https://github.com/MonacoProtocol/market-seeder-core/issues"
+    "url": "https://github.com/MonacoProtocol/seed-calculator/issues"
   },
-  "homepage": "https://github.com/MonacoProtocol/market-seeder-core/README.md",
+  "homepage": "https://github.com/MonacoProtocol/seed-calculator/README.md",
   "main": "src/index.js",
   "module": "src/index.js",
   "files": [
