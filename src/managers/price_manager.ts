@@ -4,7 +4,7 @@ import {
   nItemsUpArray
 } from "../helpers/array_helpers";
 
-const DEFAULT_PRICE_LADDER = [
+export const DEFAULT_PRICE_LADDER = [
   1.001, 1.002, 1.003, 1.004, 1.005, 1.006, 1.007, 1.008, 1.009, 1.01, 1.02,
   1.03, 1.04, 1.05, 1.06, 1.07, 1.08, 1.09, 1.1, 1.11, 1.12, 1.13, 1.14, 1.15,
   1.16, 1.17, 1.18, 1.19, 1.2, 1.21, 1.22, 1.23, 1.24, 1.25, 1.26, 1.27, 1.28,
@@ -36,6 +36,7 @@ type PriceManagerOpts = {
   depth: number;
   steps: number;
   priceTolerance: number;
+  priceLadder: number[];
 };
 
 export class PriceManager {
@@ -44,14 +45,16 @@ export class PriceManager {
     spread: number,
     depth: number,
     steps: number,
-    priceTolerance: number
+    priceTolerance: number,
+    priceLadder: number[]
   ): PriceManager {
     const manager = new PriceManager({
       truePrice,
       spread,
       depth,
       steps,
-      priceTolerance
+      priceTolerance,
+      priceLadder
     });
     manager.validatePrice();
     return manager;
@@ -70,10 +73,10 @@ export class PriceManager {
     this.depth = opts.depth;
     this.steps = opts.steps;
     this.priceTolerance = opts.priceTolerance;
-    this.priceLadder = DEFAULT_PRICE_LADDER;
+    this.priceLadder = opts.priceLadder;
   }
 
-  get forPrices() {
+  get forPrices(): number[] {
     return this.pricesWithSteps(
       this.truePrice,
       this.spread,
@@ -83,7 +86,7 @@ export class PriceManager {
     );
   }
 
-  get againstPrices() {
+  get againstPrices(): number[] {
     return this.pricesWithSteps(
       this.truePrice,
       this.spread,
@@ -93,20 +96,23 @@ export class PriceManager {
     );
   }
 
-  validatePrice() {
+  validatePrice(): boolean {
     if (this.priceLadder.includes(this.truePrice)) return true;
     else throw new Error(`Price ${this.truePrice} not found in ladder`);
   }
 
-  forPriceWithinTolerance(actualPrice: number) {
+  forPriceWithinTolerance(actualPrice: number): boolean {
     return this.priceWithinTolerance(actualPrice, true);
   }
 
-  againstPriceWithinTolerance(actualPrice: number) {
+  againstPriceWithinTolerance(actualPrice: number): boolean {
     return this.priceWithinTolerance(actualPrice, false);
   }
 
-  private priceWithinTolerance(actualPrice: number, forOutcome: boolean) {
+  private priceWithinTolerance(
+    actualPrice: number,
+    forOutcome: boolean
+  ): boolean {
     if (actualPrice === 0) return true;
     let price = this.againstPrices[0];
     if (forOutcome) price = this.forPrices[0];
@@ -122,7 +128,7 @@ export class PriceManager {
     truePrice: number,
     spread: number,
     forOutcome: boolean
-  ) {
+  ): number {
     const prices = nItemsEitherSidePointInArray(
       truePrice,
       spread,

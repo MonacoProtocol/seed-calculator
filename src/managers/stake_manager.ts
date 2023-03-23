@@ -23,7 +23,7 @@ export class StakeManager {
     this.depthStakePercentage = opts.depthStakePercentage;
   }
 
-  get depthStakeDecimal() {
+  get depthStakeDecimal(): number[] {
     return this.depthStakePercentage.map((stake) => {
       return stake / 100;
     });

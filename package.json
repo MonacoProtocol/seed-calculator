@@ -1,16 +1,28 @@
 {
   "name": "@monaco-protocol/market-seeder-core",
-  "version": "0.0.1",
+  "version": "0.0.1-dev1",
   "description": "Monaco Protocol Market Seeder Core",
   "author": "Monaco Protocol",
   "license": "MIT",
-  "module": "commonjs",
-  "target": "es5",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MonacoProtocol/market-seeder-core"
+  },
+  "bugs": {
+    "url": "https://github.com/MonacoProtocol/market-seeder-core/issues"
+  },
+  "homepage": "https://github.com/MonacoProtocol/market-seeder-core/README.md",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "files": [
+    "/src"
+  ],
   "scripts": {
     "test": "jest",
-    "working": "ts-node src/working.ts",
     "format": "prettier --config .prettierrc 'src/**/*.(ts|js)' --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "publishClient": "npm install && npm run build && npm publish --access public && npm run clean",
+    "publishDevClient": "npm install && npm run build && npm publish --tag dev --access public && npm run clean"
   },
   "devDependencies": {
     "@types/jest": "^29.2.6",
