@@ -1,40 +1,47 @@
 type StakeManagerOpts = {
   backToWin: number;
   layToLose: number;
-  depthStakePercentage: number[];
+  includeStakeInReturns: boolean;
+  depthStakePercentages: number[];
 };
 
 export class StakeManager {
   static initialize(
     backToWin: number,
     layToLose: number,
-    depthStakePercentage: number[]
+    includeStakeInReturns: boolean,
+    depthStakePercentages
+: number[]
   ): StakeManager {
-    return new StakeManager({ backToWin, layToLose, depthStakePercentage });
+    return new StakeManager({ backToWin, layToLose, includeStakeInReturns, depthStakePercentages});
   }
 
   backToWin: number;
   layToLose: number;
-  depthStakePercentage: number[];
+  includeStakeInReturns: boolean;
+  depthStakePercentages: number[];
 
   constructor(opts: StakeManagerOpts) {
     this.backToWin = opts.backToWin;
     this.layToLose = opts.layToLose;
-    this.depthStakePercentage = opts.depthStakePercentage;
+    this.includeStakeInReturns = opts.includeStakeInReturns
+    this.depthStakePercentages = opts.depthStakePercentages;
   }
 
   get depthStakeDecimal(): number[] {
-    return this.depthStakePercentage.map((stake) => {
+    return this.depthStakePercentages.map((stake) => {
       return stake / 100;
     });
   }
 
   private forStake(price: number): number {
+    if (this.includeStakeInReturns) return this.backToWin / (price);
     return this.backToWin / (price - 1);
   }
 
   private againstStake(price: number): number {
-    return this.layToLose * price - this.layToLose;
+    if (this.includeStakeInReturns) return this.layToLose / (price);
+    return this.layToLose / (price - 1);
   }
 
   forStakes(prices: number[]): number[] {

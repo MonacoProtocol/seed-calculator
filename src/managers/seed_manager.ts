@@ -21,6 +21,7 @@ export class SeedManager {
     priceTolerance: number,
     backToWin: number,
     layToLose: number,
+    includeStakeInReturns: boolean,
     depthStakePercentage: number[],
     priceLadder: number[] = DEFAULT_PRICE_LADDER
   ) {
@@ -35,6 +36,7 @@ export class SeedManager {
     const stakeManager = StakeManager.initialize(
       backToWin,
       layToLose,
+      includeStakeInReturns,
       depthStakePercentage
     );
     return new SeedManager({ priceManager, stakeManager });
@@ -52,8 +54,8 @@ export class SeedManager {
     return this.priceManager.forPrices.map((price, i) => {
       const stakes = this.stakeManager.forStakes(this.priceManager.forPrices);
       return {
-        price: price,
-        stake: stakes[i]
+        stake: stakes[i],
+        price: price
       };
     });
   }
@@ -64,8 +66,8 @@ export class SeedManager {
         this.priceManager.againstPrices
       );
       return {
+        stake: stakes[i],
         price: price,
-        stake: stakes[i]
       };
     });
   }
