@@ -95,6 +95,7 @@ const steps = 2;
 const toReturn = 100;
 const toLose = 100;
 const includeStakeInReturns = true;
+const depthPercentages = [100, 50, 25];
 const withinAgainstTolerance = 2.06;
 const outsideForTolerance = 1.93;
 const manager = SeedManager.initialize(
@@ -104,7 +105,7 @@ const manager = SeedManager.initialize(
   toReturn,
   toLose,
   includeStakeInReturns,
-  [100, 50, 25]
+  depthPercentages
 );
 console.log("FOR\n");
 manager.forSeeds.map((seed) => {
