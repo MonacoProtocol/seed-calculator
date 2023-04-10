@@ -1,8 +1,8 @@
 export const stakeManagerTestCaseData = [
   {
     test: "100 @ 2 - include returns",
-    backToWin: 100,
-    layToLose: 100,
+    toReturn: 100,
+    toLose: 100,
     includeStakeInReturns: true,
     depthStakePercentage: [100],
     forPrices: [2.0],
@@ -12,8 +12,8 @@ export const stakeManagerTestCaseData = [
   },
   {
     test: "100 @ 2 - exclude returns",
-    backToWin: 100,
-    layToLose: 100,
+    toReturn: 100,
+    toLose: 100,
     includeStakeInReturns: false,
     depthStakePercentage: [100],
     forPrices: [2.0],
@@ -23,8 +23,8 @@ export const stakeManagerTestCaseData = [
   },
   {
     test: "100 @ 2 - 3 depths",
-    backToWin: 100,
-    layToLose: 100,
+    toReturn: 100,
+    toLose: 100,
     includeStakeInReturns: false,
     depthStakePercentage: [100, 50, 25],
     forPrices: [2.0, 2.0, 2.0],

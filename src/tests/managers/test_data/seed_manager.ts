@@ -4,8 +4,8 @@ export const seedManagerTestCaseData = [
     truePrice: 2.4,
     spread: 4,
     steps: 4,
-    backToWin: 100,
-    layToLose: 100,
+    toReturn: 100,
+    toLose: 100,
     includeStakeInReturns: true,
     depthStakePercentage: [100],
     forSeeds: [
@@ -28,8 +28,8 @@ export const seedManagerTestCaseData = [
     truePrice: 2.4,
     spread: 4,
     steps: 4,
-    backToWin: 100,
-    layToLose: 100,
+    toReturn: 100,
+    toLose: 100,
     includeStakeInReturns: false,
     depthStakePercentage: [100],
     forSeeds: [
@@ -52,8 +52,8 @@ export const seedManagerTestCaseData = [
     truePrice: 3.4,
     spread: 4,
     steps: 4,
-    backToWin: 100,
-    layToLose: 100,
+    toReturn: 100,
+    toLose: 100,
     includeStakeInReturns: true,
     depthStakePercentage: [100, 75, 50],
     forSeeds: [
@@ -96,8 +96,8 @@ export const seedManagerTestCaseData = [
     truePrice: 3.4,
     spread: 4,
     steps: 4,
-    backToWin: 100,
-    layToLose: 100,
+    toReturn: 100,
+    toLose: 100,
     includeStakeInReturns: false,
     depthStakePercentage: [100, 75, 50],
     forSeeds: [

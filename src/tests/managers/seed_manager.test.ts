@@ -8,8 +8,8 @@ describe("Seed Manager", () => {
       testData.truePrice,
       testData.spread,
       testData.steps,
-      testData.backToWin,
-      testData.layToLose,
+      testData.toReturn,
+      testData.toLose,
       testData.includeStakeInReturns,
       testData.depthStakePercentage
     );

@@ -20,8 +20,8 @@ export class SeedManager {
     truePrice: number,
     spread: number,
     steps: number,
-    backToWin: number,
-    layToLose: number,
+    toReturn: number,
+    toLose: number,
     includeStakeInReturns: boolean,
     depthStakePercentage: number[],
     priceLadder: number[] = DEFAULT_PRICE_LADDER,
@@ -37,8 +37,8 @@ export class SeedManager {
       priceLadder
     );
     const stakeManager = StakeManager.initialize(
-      backToWin,
-      layToLose,
+      toReturn,
+      toLose,
       includeStakeInReturns,
       depthStakePercentage
     );

@@ -12,8 +12,8 @@ describe("Stake Manager", () => {
     "Calculates stakes for $test",
     (testData) => {
       const manager = StakeManager.initialize(
-        testData.backToWin,
-        testData.layToLose,
+        testData.toReturn,
+        testData.toLose,
         testData.includeStakeInReturns,
         testData.depthStakePercentage
       );
