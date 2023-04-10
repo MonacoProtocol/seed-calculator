@@ -1,30 +1,34 @@
 type StakeManagerOpts = {
-  backToWin: number;
-  layToLose: number;
+  toReturn: number;
+  toLose: number;
   includeStakeInReturns: boolean;
   depthStakePercentages: number[];
 };
 
 export class StakeManager {
   static initialize(
-    backToWin: number,
-    layToLose: number,
+    toReturn: number,
+    toLose: number,
     includeStakeInReturns: boolean,
-    depthStakePercentages
-: number[]
+    depthStakePercentages: number[]
   ): StakeManager {
-    return new StakeManager({ backToWin, layToLose, includeStakeInReturns, depthStakePercentages});
+    return new StakeManager({
+      toReturn,
+      toLose,
+      includeStakeInReturns,
+      depthStakePercentages
+    });
   }
 
-  backToWin: number;
-  layToLose: number;
+  toReturn: number;
+  toLose: number;
   includeStakeInReturns: boolean;
   depthStakePercentages: number[];
 
   constructor(opts: StakeManagerOpts) {
-    this.backToWin = opts.backToWin;
-    this.layToLose = opts.layToLose;
-    this.includeStakeInReturns = opts.includeStakeInReturns
+    this.toReturn = opts.toReturn;
+    this.toLose = opts.toLose;
+    this.includeStakeInReturns = opts.includeStakeInReturns;
     this.depthStakePercentages = opts.depthStakePercentages;
   }
 
@@ -35,13 +39,13 @@ export class StakeManager {
   }
 
   private forStake(price: number): number {
-    if (this.includeStakeInReturns) return this.backToWin / (price);
-    return this.backToWin / (price - 1);
+    if (this.includeStakeInReturns) return this.toReturn / price;
+    return this.toReturn / (price - 1);
   }
 
   private againstStake(price: number): number {
-    if (this.includeStakeInReturns) return this.layToLose / (price);
-    return this.layToLose / (price - 1);
+    if (this.includeStakeInReturns) return this.toLose / price;
+    return this.toLose / (price - 1);
   }
 
   forStakes(prices: number[]): number[] {
@@ -51,7 +55,7 @@ export class StakeManager {
       );
     return prices.map((price, i) => {
       const stake = this.forStake(price);
-      return Math.floor(stake * this.depthStakeDecimal[i]);
+      return stake * this.depthStakeDecimal[i];
     });
   }
 
@@ -62,7 +66,7 @@ export class StakeManager {
       );
     return prices.map((price, i) => {
       const stake = this.againstStake(price);
-      return Math.floor(stake * this.depthStakeDecimal[i]);
+      return stake * this.depthStakeDecimal[i];
     });
   }
 }

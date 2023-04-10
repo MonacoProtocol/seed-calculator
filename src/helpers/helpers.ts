@@ -20,3 +20,7 @@ export function nItemsUpArray(startValue: any, depth: number, array: any[]) {
   const startIndex = array.indexOf(startValue);
   return array.slice(startIndex, startIndex + depth);
 }
+
+export function roundNumber(numberToRound: number, decimals: number = 2) {
+  return parseFloat(numberToRound.toFixed(decimals));
+}

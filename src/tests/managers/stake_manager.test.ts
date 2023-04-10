@@ -4,7 +4,7 @@ import { stakeManagerTestCaseData } from "./test_data/stake_manager";
 
 describe("Stake Manager", () => {
   it("Converts percentages to decimal", () => {
-    const manager = StakeManager.initialize(300, 100, [100, 75, 50]);
+    const manager = StakeManager.initialize(300, 100, false, [100, 75, 50]);
     assert.deepStrictEqual(manager.depthStakeDecimal, [1, 0.75, 0.5]);
   });
 
@@ -12,8 +12,9 @@ describe("Stake Manager", () => {
     "Calculates stakes for $test",
     (testData) => {
       const manager = StakeManager.initialize(
-        testData.backToWin,
-        testData.layToLose,
+        testData.toReturn,
+        testData.toLose,
+        testData.includeStakeInReturns,
         testData.depthStakePercentage
       );
       assert.deepStrictEqual(
