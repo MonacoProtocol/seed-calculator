@@ -87,6 +87,8 @@ With the same pricing as above:
 # Code Example
 
 ```
+import { SeedManager } from "@monaco-protocol/seed-calculator";
+
 const truePrice = 2;
 const spread = 4;
 const steps = 2;
