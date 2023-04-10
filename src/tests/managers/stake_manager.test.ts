@@ -1,28 +1,29 @@
 import assert from "assert";
-import { SeedManager } from "../../managers/seed_manager";
-import { seedManagerTestCaseData } from "./test_data/seed_manager";
+import { StakeManager } from "../../managers/stake_manager";
+import { stakeManagerTestCaseData } from "./test_data/stake_manager";
 
-describe("Seed Manager", () => {
+describe("Stake Manager", () => {
+  it("Converts percentages to decimal", () => {
+    const manager = StakeManager.initialize(300, 100, false, [100, 75, 50]);
+    assert.deepStrictEqual(manager.depthStakeDecimal, [1, 0.75, 0.5]);
+  });
 
-  it.each(seedManagerTestCaseData)(
-    "Calculates seeds for $test",
+  it.each(stakeManagerTestCaseData)(
+    "Calculates stakes for $test",
     (testData) => {
-      const manager = SeedManager.initialize(
-        testData.truePrice,
-        testData.spread,
-        testData.steps,
+      const manager = StakeManager.initialize(
         testData.backToWin,
         testData.layToLose,
         testData.includeStakeInReturns,
         testData.depthStakePercentage
       );
       assert.deepStrictEqual(
-        manager.forSeeds,
-        testData.forSeeds
+        manager.forStakes(testData.forPrices),
+        testData.forStakes
       );
       assert.deepStrictEqual(
-        manager.againstSeeds,
-        testData.againstSeeds
+        manager.againstStakes(testData.againstPrices),
+        testData.againstStakes
       );
     }
   );

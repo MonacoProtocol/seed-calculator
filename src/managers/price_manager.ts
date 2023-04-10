@@ -2,7 +2,7 @@ import {
   nItemsDownArray,
   nItemsEitherSidePointInArray,
   nItemsUpArray
-} from "../helpers/array_helpers";
+} from "../helpers/helpers";
 
 export const DEFAULT_PRICE_LADDER = [
   1.001, 1.002, 1.003, 1.004, 1.005, 1.006, 1.007, 1.008, 1.009, 1.01, 1.02,

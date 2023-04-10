@@ -1,3 +1,4 @@
+import { roundNumber } from "../helpers/helpers";
 import { DEFAULT_PRICE_LADDER, PriceManager } from "./price_manager";
 import { StakeManager } from "./stake_manager";
 
@@ -9,6 +10,7 @@ type SeedManagerOpts = {
 type Seed = {
   stake: number;
   price: number;
+  return: number;
 };
 
 export type Seeds = Seed[];
@@ -25,7 +27,7 @@ export class SeedManager {
     priceLadder: number[] = DEFAULT_PRICE_LADDER,
     priceTolerance: number = null
   ) {
-    if (!priceTolerance) priceTolerance = steps
+    if (!priceTolerance) priceTolerance = steps;
     const priceManager = PriceManager.initialize(
       truePrice,
       spread,
@@ -55,8 +57,9 @@ export class SeedManager {
     return this.priceManager.forPrices.map((price, i) => {
       const stakes = this.stakeManager.forStakes(this.priceManager.forPrices);
       return {
-        stake: stakes[i],
-        price: price
+        stake: roundNumber(stakes[i]),
+        price: price,
+        return: roundNumber(stakes[i] * price)
       };
     });
   }
@@ -67,8 +70,9 @@ export class SeedManager {
         this.priceManager.againstPrices
       );
       return {
-        stake: stakes[i],
+        stake: roundNumber(stakes[i]),
         price: price,
+        return: roundNumber(stakes[i] * price)
       };
     });
   }
