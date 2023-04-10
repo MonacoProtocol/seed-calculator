@@ -1,6 +1,6 @@
 export const priceManagerTestCaseData = [
   {
-    test: "AC params",
+    test: "#1",
     truePrice: 2,
     spread: 3,
     depth: 3,
@@ -14,7 +14,7 @@ export const priceManagerTestCaseData = [
     nonToleratedAgainstPrices: [1.99, 1.95]
   },
   {
-    test: "#1",
+    test: "#2",
     truePrice: 100,
     spread: 5,
     depth: 2,

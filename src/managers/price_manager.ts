@@ -46,7 +46,7 @@ export class PriceManager {
     depth: number,
     steps: number,
     priceTolerance: number,
-    priceLadder: number[]
+    priceLadder: number[] = DEFAULT_PRICE_LADDER
   ): PriceManager {
     const manager = new PriceManager({
       truePrice,

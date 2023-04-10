@@ -7,8 +7,8 @@ type SeedManagerOpts = {
 };
 
 type Seed = {
-  price: number;
   stake: number;
+  price: number;
 };
 
 export type Seeds = Seed[];
@@ -18,13 +18,14 @@ export class SeedManager {
     truePrice: number,
     spread: number,
     steps: number,
-    priceTolerance: number,
     backToWin: number,
     layToLose: number,
     includeStakeInReturns: boolean,
     depthStakePercentage: number[],
-    priceLadder: number[] = DEFAULT_PRICE_LADDER
+    priceLadder: number[] = DEFAULT_PRICE_LADDER,
+    priceTolerance: number = null
   ) {
+    if (!priceTolerance) priceTolerance = steps
     const priceManager = PriceManager.initialize(
       truePrice,
       spread,
