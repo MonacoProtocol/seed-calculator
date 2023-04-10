@@ -19,6 +19,8 @@
   ],
   "scripts": {
     "test": "jest",
+    "build": "tsc --downlevelIteration",
+    "clean": "tsc --build --clean",
     "format": "prettier --config .prettierrc 'src/**/*.(ts|js)' --write",
     "prepare": "husky install",
     "publishClient": "npm install && npm run build && npm publish --access public && npm run clean",
