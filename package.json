@@ -1,6 +1,6 @@
 {
   "name": "@monaco-protocol/seed-calculator",
-  "version": "0.0.1-dev1",
+  "version": "0.1.0",
   "description": "Monaco Protocol Seed Calculator",
   "author": "Monaco Protocol",
   "license": "MIT",
